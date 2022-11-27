@@ -1,7 +1,7 @@
 name: woby
 description: Learn pronuncation of words.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -12,14 +12,23 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  flutter_native_splash: ^2.2.14
   get_it: ^7.2.0
   flutter_riverpod: ^1.0.4
+  freezed: ^2.2.1
   easy_localization: ^3.0.1
+  shared_preferences: ^2.0.15
+  path_provider: ^2.0.11
   #network
   dio: ^4.0.6
   retrofit: ^3.3.1
   json_annotation: ^4.7.0
+  auto_size_text: ^3.0.0
+  flutter_svg: ^1.1.5
+  logger: ^1.1.0
+  vosk_flutter_plugin:
+    git:
+      url: https://github.com/MAGIG-dev/vosk-flutter
+      ref: master
 
 
 dev_dependencies:

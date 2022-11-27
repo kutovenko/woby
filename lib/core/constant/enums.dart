@@ -1,0 +1,1 @@
+enum SplashStates { dashboard, download }
