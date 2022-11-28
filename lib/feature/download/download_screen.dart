@@ -11,7 +11,8 @@ class DownloadScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bool isLoading = ref.watch(downloadProvider).isLoading;
     final double progress = ref.watch(downloadProvider).percentCompleted;
-    final bool completed = ref.watch(downloadProvider).completed;
+    final bool completed = ref.watch(downloadProvider).isCompleted;
+    final bool error = ref.watch(downloadProvider).isError;
 
     return isLoading
         ? Center(
@@ -21,17 +22,17 @@ class DownloadScreen extends ConsumerWidget {
                 SizedBox(
                   width: 100,
                   height: 100,
-                  child: CircularProgressIndicator(
-                    // color: Colors.grey,
-                    // valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-                    strokeWidth: 6.0,
-                    value: progress,
-                  ),
+                  child: progress == 0
+                      ? const CircularProgressIndicator()
+                      : CircularProgressIndicator(
+                          strokeWidth: 6.0,
+                          value: progress,
+                        ),
                 ),
                 const SizedBox(
                   height: 20.0,
                 ),
-                Text('${(progress * 100).toStringAsFixed(0)} % completed'),
+                Text('${(progress * 100).toStringAsFixed(0)} % ${'completed'.tr()}'),
                 const SizedBox(
                   height: 20.0,
                 ),
@@ -58,7 +59,15 @@ class DownloadScreen extends ConsumerWidget {
                 ),
                 ElevatedButton(
                     onPressed: () => ref.read(downloadProvider.notifier).downloadLangModel(),
-                    child: Text('download'.tr()))
+                    child: Text('download'.tr())),
+                const SizedBox(
+                  height: 30,
+                ),
+                if (error)
+                  Text(
+                    'network_error'.tr(),
+                    style: const TextStyle(color: Colors.red),
+                  ),
               ],
             ),
           );

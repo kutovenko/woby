@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DownloadState {
-  bool get completed => throw _privateConstructorUsedError;
-  dynamic get isLoading => throw _privateConstructorUsedError;
-  int get total => throw _privateConstructorUsedError;
+  bool get isCompleted => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isError => throw _privateConstructorUsedError;
   double get percentCompleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,7 +33,10 @@ abstract class $DownloadStateCopyWith<$Res> {
       _$DownloadStateCopyWithImpl<$Res, DownloadState>;
   @useResult
   $Res call(
-      {bool completed, dynamic isLoading, int total, double percentCompleted});
+      {bool isCompleted,
+      bool isLoading,
+      bool isError,
+      double percentCompleted});
 }
 
 /// @nodoc
@@ -49,24 +52,24 @@ class _$DownloadStateCopyWithImpl<$Res, $Val extends DownloadState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? completed = null,
+    Object? isCompleted = null,
     Object? isLoading = null,
-    Object? total = null,
+    Object? isError = null,
     Object? percentCompleted = null,
   }) {
     return _then(_value.copyWith(
-      completed: null == completed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as bool,
+      isError: null == isError
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
+              as bool,
       percentCompleted: null == percentCompleted
           ? _value.percentCompleted
           : percentCompleted // ignore: cast_nullable_to_non_nullable
@@ -84,7 +87,10 @@ abstract class _$$_DownloadStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool completed, dynamic isLoading, int total, double percentCompleted});
+      {bool isCompleted,
+      bool isLoading,
+      bool isError,
+      double percentCompleted});
 }
 
 /// @nodoc
@@ -98,21 +104,24 @@ class __$$_DownloadStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? completed = null,
+    Object? isCompleted = null,
     Object? isLoading = null,
-    Object? total = null,
+    Object? isError = null,
     Object? percentCompleted = null,
   }) {
     return _then(_$_DownloadState(
-      completed: null == completed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
-      isLoading: null == isLoading ? _value.isLoading : isLoading,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: null == isError
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
+              as bool,
       percentCompleted: null == percentCompleted
           ? _value.percentCompleted
           : percentCompleted // ignore: cast_nullable_to_non_nullable
@@ -125,28 +134,28 @@ class __$$_DownloadStateCopyWithImpl<$Res>
 
 class _$_DownloadState extends _DownloadState {
   const _$_DownloadState(
-      {this.completed = false,
+      {this.isCompleted = false,
       this.isLoading = false,
-      this.total = 0,
+      this.isError = false,
       this.percentCompleted = 0.0})
       : super._();
 
   @override
   @JsonKey()
-  final bool completed;
+  final bool isCompleted;
   @override
   @JsonKey()
-  final dynamic isLoading;
+  final bool isLoading;
   @override
   @JsonKey()
-  final int total;
+  final bool isError;
   @override
   @JsonKey()
   final double percentCompleted;
 
   @override
   String toString() {
-    return 'DownloadState(completed: $completed, isLoading: $isLoading, total: $total, percentCompleted: $percentCompleted)';
+    return 'DownloadState(isCompleted: $isCompleted, isLoading: $isLoading, isError: $isError, percentCompleted: $percentCompleted)';
   }
 
   @override
@@ -154,17 +163,18 @@ class _$_DownloadState extends _DownloadState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DownloadState &&
-            (identical(other.completed, completed) ||
-                other.completed == completed) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            (identical(other.total, total) || other.total == total) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.isError, isError) || other.isError == isError) &&
             (identical(other.percentCompleted, percentCompleted) ||
                 other.percentCompleted == percentCompleted));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, completed,
-      const DeepCollectionEquality().hash(isLoading), total, percentCompleted);
+  int get hashCode => Object.hash(
+      runtimeType, isCompleted, isLoading, isError, percentCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -175,18 +185,18 @@ class _$_DownloadState extends _DownloadState {
 
 abstract class _DownloadState extends DownloadState {
   const factory _DownloadState(
-      {final bool completed,
-      final dynamic isLoading,
-      final int total,
+      {final bool isCompleted,
+      final bool isLoading,
+      final bool isError,
       final double percentCompleted}) = _$_DownloadState;
   const _DownloadState._() : super._();
 
   @override
-  bool get completed;
+  bool get isCompleted;
   @override
-  dynamic get isLoading;
+  bool get isLoading;
   @override
-  int get total;
+  bool get isError;
   @override
   double get percentCompleted;
   @override

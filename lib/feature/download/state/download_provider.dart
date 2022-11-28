@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:woby/core/constant/app_constants.dart';
 
 import 'dart:io';
@@ -19,7 +20,7 @@ class DownloadNotifier extends StateNotifier<DownloadState> {
   final dio = locator.get<DioProvider>().dio;
 
   Future downloadLangModel() async {
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(isLoading: true, isError: false);
     try {
       Response response = await dio.get(
         AppConstants.engModelUrl,
@@ -39,17 +40,19 @@ class DownloadNotifier extends StateNotifier<DownloadState> {
       // response.data is List<int> type
       raf.writeFromSync(response.data);
       await raf.close();
-      state = state.copyWith(completed: true);
+
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('model_downloaded', true);
+      state = state.copyWith(isCompleted: true);
     } catch (e) {
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(isLoading: false, isError: true);
       print(e);
     }
   }
 
   void showDownloadProgress(received, total) {
     if (total != -1) {
-      state = state.copyWith(total: total, percentCompleted: (received / total));
-      // print((received / total * 100).toStringAsFixed(0) + "%");
+      state = state.copyWith(percentCompleted: (received / total));
     }
   }
 }

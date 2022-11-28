@@ -13,9 +13,9 @@ class SplashNotifier extends StateNotifier<SplashState> {
   setUserFlow() async {
     state = state.copyWith(isLoading: true);
     final prefs = await SharedPreferences.getInstance();
-    final bool? notFirstStart = prefs.getBool('notFirstStart');
+    final bool? modelDownloaded = prefs.getBool('model_downloaded');
 
-    if (notFirstStart != null && notFirstStart) {
+    if (modelDownloaded != null && modelDownloaded) {
       state = state.copyWith(isLoading: false, splashState: SplashStates.dashboard);
     } else {
       state = state.copyWith(isLoading: false, splashState: SplashStates.download);
