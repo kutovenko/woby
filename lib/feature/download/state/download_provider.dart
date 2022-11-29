@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:woby/core/constant/app_constants.dart';
@@ -20,7 +21,7 @@ class DownloadNotifier extends StateNotifier<DownloadState> {
   final dio = locator.get<DioProvider>().dio;
 
   Future downloadLangModel() async {
-    state = state.copyWith(isLoading: true, isError: false);
+    state = state.copyWith(isLoading: true, exceptionMessage: '');
     try {
       Response response = await dio.get(
         AppConstants.engModelUrl,
@@ -40,12 +41,18 @@ class DownloadNotifier extends StateNotifier<DownloadState> {
       // response.data is List<int> type
       raf.writeFromSync(response.data);
       await raf.close();
-
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool('model_downloaded', true);
       state = state.copyWith(isCompleted: true);
     } catch (e) {
-      state = state.copyWith(isLoading: false, isError: true);
+      String exceptionMessage = '';
+      if (e is FileSystemException) {
+        exceptionMessage = 'filesystem_exception'.tr();
+      } else {
+        exceptionMessage = 'network_exception'.tr();
+      }
+      state =
+          state.copyWith(isLoading: false, exceptionMessage: exceptionMessage, isCompleted: false);
       print(e);
     }
   }

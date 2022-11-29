@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:woby/core/constant/app_constants.dart';
+import 'package:woby/feature/collection/collections_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -20,7 +21,10 @@ class DashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: () {}, child: Text('learn'.tr())),
+                ElevatedButton(
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const CollectionsScreen())),
+                    child: Text('learn'.tr())),
                 ElevatedButton(onPressed: () {}, child: Text('settings'.tr())),
                 const SizedBox(
                   height: 16.0,

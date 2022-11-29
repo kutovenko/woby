@@ -12,7 +12,7 @@ class DownloadScreen extends ConsumerWidget {
     final bool isLoading = ref.watch(downloadProvider).isLoading;
     final double progress = ref.watch(downloadProvider).percentCompleted;
     final bool completed = ref.watch(downloadProvider).isCompleted;
-    final bool error = ref.watch(downloadProvider).isError;
+    final String exceptionMessage = ref.watch(downloadProvider).exceptionMessage;
 
     return isLoading
         ? Center(
@@ -33,6 +33,7 @@ class DownloadScreen extends ConsumerWidget {
                   height: 20.0,
                 ),
                 Text('${(progress * 100).toStringAsFixed(0)} % ${'completed'.tr()}'),
+                Text('please_stand_by'.tr()),
                 const SizedBox(
                   height: 20.0,
                 ),
@@ -63,11 +64,10 @@ class DownloadScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                if (error)
-                  Text(
-                    'network_error'.tr(),
-                    style: const TextStyle(color: Colors.red),
-                  ),
+                Text(
+                  exceptionMessage,
+                  style: const TextStyle(color: Colors.red),
+                ),
               ],
             ),
           );

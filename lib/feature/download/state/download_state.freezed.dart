@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DownloadState {
   bool get isCompleted => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  bool get isError => throw _privateConstructorUsedError;
+  String get exceptionMessage => throw _privateConstructorUsedError;
   double get percentCompleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $DownloadStateCopyWith<$Res> {
   $Res call(
       {bool isCompleted,
       bool isLoading,
-      bool isError,
+      String exceptionMessage,
       double percentCompleted});
 }
 
@@ -54,7 +54,7 @@ class _$DownloadStateCopyWithImpl<$Res, $Val extends DownloadState>
   $Res call({
     Object? isCompleted = null,
     Object? isLoading = null,
-    Object? isError = null,
+    Object? exceptionMessage = null,
     Object? percentCompleted = null,
   }) {
     return _then(_value.copyWith(
@@ -66,10 +66,10 @@ class _$DownloadStateCopyWithImpl<$Res, $Val extends DownloadState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      isError: null == isError
-          ? _value.isError
-          : isError // ignore: cast_nullable_to_non_nullable
-              as bool,
+      exceptionMessage: null == exceptionMessage
+          ? _value.exceptionMessage
+          : exceptionMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       percentCompleted: null == percentCompleted
           ? _value.percentCompleted
           : percentCompleted // ignore: cast_nullable_to_non_nullable
@@ -89,7 +89,7 @@ abstract class _$$_DownloadStateCopyWith<$Res>
   $Res call(
       {bool isCompleted,
       bool isLoading,
-      bool isError,
+      String exceptionMessage,
       double percentCompleted});
 }
 
@@ -106,7 +106,7 @@ class __$$_DownloadStateCopyWithImpl<$Res>
   $Res call({
     Object? isCompleted = null,
     Object? isLoading = null,
-    Object? isError = null,
+    Object? exceptionMessage = null,
     Object? percentCompleted = null,
   }) {
     return _then(_$_DownloadState(
@@ -118,10 +118,10 @@ class __$$_DownloadStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      isError: null == isError
-          ? _value.isError
-          : isError // ignore: cast_nullable_to_non_nullable
-              as bool,
+      exceptionMessage: null == exceptionMessage
+          ? _value.exceptionMessage
+          : exceptionMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       percentCompleted: null == percentCompleted
           ? _value.percentCompleted
           : percentCompleted // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ class _$_DownloadState extends _DownloadState {
   const _$_DownloadState(
       {this.isCompleted = false,
       this.isLoading = false,
-      this.isError = false,
+      this.exceptionMessage = '',
       this.percentCompleted = 0.0})
       : super._();
 
@@ -148,14 +148,14 @@ class _$_DownloadState extends _DownloadState {
   final bool isLoading;
   @override
   @JsonKey()
-  final bool isError;
+  final String exceptionMessage;
   @override
   @JsonKey()
   final double percentCompleted;
 
   @override
   String toString() {
-    return 'DownloadState(isCompleted: $isCompleted, isLoading: $isLoading, isError: $isError, percentCompleted: $percentCompleted)';
+    return 'DownloadState(isCompleted: $isCompleted, isLoading: $isLoading, exceptionMessage: $exceptionMessage, percentCompleted: $percentCompleted)';
   }
 
   @override
@@ -167,14 +167,15 @@ class _$_DownloadState extends _DownloadState {
                 other.isCompleted == isCompleted) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.isError, isError) || other.isError == isError) &&
+            (identical(other.exceptionMessage, exceptionMessage) ||
+                other.exceptionMessage == exceptionMessage) &&
             (identical(other.percentCompleted, percentCompleted) ||
                 other.percentCompleted == percentCompleted));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, isCompleted, isLoading, isError, percentCompleted);
+      runtimeType, isCompleted, isLoading, exceptionMessage, percentCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +188,7 @@ abstract class _DownloadState extends DownloadState {
   const factory _DownloadState(
       {final bool isCompleted,
       final bool isLoading,
-      final bool isError,
+      final String exceptionMessage,
       final double percentCompleted}) = _$_DownloadState;
   const _DownloadState._() : super._();
 
@@ -196,7 +197,7 @@ abstract class _DownloadState extends DownloadState {
   @override
   bool get isLoading;
   @override
-  bool get isError;
+  String get exceptionMessage;
   @override
   double get percentCompleted;
   @override

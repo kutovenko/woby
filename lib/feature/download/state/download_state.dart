@@ -6,7 +6,7 @@ class DownloadState with _$DownloadState {
   const factory DownloadState(
       {@Default(false) bool isCompleted,
       @Default(false) bool isLoading,
-      @Default(false) bool isError,
+      @Default('') String exceptionMessage,
       @Default(0.0) double percentCompleted}) = _DownloadState;
 
   const DownloadState._();
