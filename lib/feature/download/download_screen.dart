@@ -19,6 +19,10 @@ class DownloadScreen extends ConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Text('obtaining_dictionary'.tr()),
+                const SizedBox(
+                  height: 20.0,
+                ),
                 SizedBox(
                   width: 100,
                   height: 100,

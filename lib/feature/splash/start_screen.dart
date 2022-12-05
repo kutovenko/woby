@@ -6,31 +6,38 @@ import 'package:woby/feature/dashboard/dashboard_screen.dart';
 import 'package:woby/feature/download/download_screen.dart';
 import 'package:woby/feature/splash/state/splash_provider.dart';
 
-class StartScreen extends ConsumerWidget {
+class StartScreen extends ConsumerStatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  StartScreenState createState() => StartScreenState();
+}
+
+class StartScreenState extends ConsumerState<StartScreen> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(splashProvider.notifier).setUserFlow();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final SplashStates mode = ref.watch(splashProvider).splashState;
     final bool isLoading = ref.watch(splashProvider).isLoading;
     print('mode: $mode -- isLoading: $isLoading');
-
-    Widget chooseMode() {
-      if (isLoading) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      } else {
-        return mode == SplashStates.download ? const DownloadScreen() : const DashboardScreen();
-      }
-    }
 
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
         title: const Text(AppConstants.appName),
       ),
-      body: chooseMode(),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : mode == SplashStates.download
+              ? const DownloadScreen()
+              : const DashboardScreen(),
     ));
   }
 }

@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:woby/core/constant/app_constants.dart';
 import 'package:woby/feature/collection/collections_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -10,9 +9,6 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        title: const Text(AppConstants.appName),
-      ),
       body: SingleChildScrollView(
         child: Align(
           alignment: Alignment.center,
@@ -22,8 +18,8 @@ class DashboardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const CollectionsScreen())),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => CollectionsScreen())),
                     child: Text('learn'.tr())),
                 ElevatedButton(onPressed: () {}, child: Text('settings'.tr())),
                 const SizedBox(
