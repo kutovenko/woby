@@ -8,7 +8,7 @@ class LearnScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -18,7 +18,7 @@ class LearnScreen extends StatelessWidget {
         ),
         body: WordCardSimpleWidget(
           wordData: collectionData.words[0],
-          height: _height,
+          height: height,
         ),
       ),
     );
