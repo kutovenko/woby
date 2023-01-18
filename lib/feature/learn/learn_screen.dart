@@ -34,28 +34,96 @@ class WordCardSimpleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double point = height / 8;
-    final wordSize = point * 2;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Text(
-            wordData.dictionaryData.word,
-            style: TextStyle(fontSize: wordSize),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return SizedBox(
+      height: height,
+      child: Expanded(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('[${wordData.dictionaryData.text}]'),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.play_arrow)),
+            IconButton(
+                iconSize: point,
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.chevron_left_rounded,
+                )),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Text(
+                      wordData.dictionaryData.word,
+                      style: TextStyle(fontSize: point / 2),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('[${wordData.dictionaryData.text}]'),
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.play_arrow)),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24.0,
+                  ),
+                  IconButton(
+                      iconSize: point,
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.mic_rounded,
+                      )),
+                  Text('correct'.tr()),
+                  const SizedBox(
+                    height: 24.0,
+                  )
+                ],
+              ),
+            ),
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     Padding(
+            //       padding: const EdgeInsets.all(32.0),
+            //       child: Text(
+            //         wordData.dictionaryData.word,
+            //         style: TextStyle(fontSize: point),
+            //       ),
+            //     ),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         Text('[${wordData.dictionaryData.text}]'),
+            //         IconButton(onPressed: () {}, icon: const Icon(Icons.play_arrow)),
+            //       ],
+            //     ),
+            //     const SizedBox(
+            //       height: 24.0,
+            //     ),
+            //     IconButton(
+            //         iconSize: point,
+            //         onPressed: () {},
+            //         icon: const Icon(
+            //           Icons.mic_rounded,
+            //         )),
+            //     const Spacer(),
+            //     Text('correct'.tr()),
+            //     const SizedBox(
+            //       height: 24.0,
+            //     )
+            //   ],
+            // ),
+            IconButton(
+                iconSize: point,
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.chevron_right_rounded,
+                ))
           ],
         ),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.mic_rounded)),
-        const Spacer(),
-        Text('correct'.tr())
-      ],
+      ),
     );
   }
 }
