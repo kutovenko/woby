@@ -1,0 +1,6 @@
+framework module vosk_flutter_plugin {
+  umbrella header "vosk_flutter_plugin-umbrella.h"
+
+  export *
+  module * { export * }
+}
